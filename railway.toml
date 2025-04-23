@@ -1,5 +1,8 @@
-[build]
-builder = "NIXPACKS"
-
-[deploy]
-startCommand = "hypercorn main:app --bind \"[::]:$PORT\""
+if($text){
+$tx = str_replace(" ","+",$text);
+$api = json_decode(file_get_contents("http://hostarmof4.ml/Voice.php?t=".$tx),true);
+$v = $api["links"]["mp3"];
+bot('sendaudio',[
+'chat_id'=>$chat_id,
+'audio'=>$v
+]);}
